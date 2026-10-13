@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080b14">
+<meta name="description" content="ICEMAN BOT private dashboard for WhatsApp pairing, connection status, and Gemini settings.">
+<title>ICEMAN BOT — Control Center</title>
+<style>
+:root{color-scheme:dark;--bg:#080b14;--panel:#111827;--panel2:#0c1321;--line:#263449;--text:#edf3ff;--muted:#96a5bd;--cyan:#59e1e8;--blue:#7b8cff;--green:#50dfa0;--red:#ff6f83;--amber:#ffc76a;--radius:20px;--shadow:0 20px 60px #0005}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 12% 0%,#172849 0,transparent 35%),radial-gradient(ellipse at 100% 15%,#122a31 0,transparent 30%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}a{color:var(--cyan)}.wrap{width:min(1160px,calc(100% - 30px));margin:auto}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 0}.brand{display:flex;align-items:center;gap:13px}.logo{display:grid;place-items:center;width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--cyan),var(--blue));color:#07101b;font-weight:1000;font-size:20px;box-shadow:0 8px 28px #59e1e833}.brand h1{font-size:19px;line-height:1.2;margin:0;letter-spacing:.08em}.brand p{margin:5px 0 0;color:var(--muted);font-size:12px}.top-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.pill{border:1px solid var(--line);border-radius:999px;padding:7px 11px;color:var(--muted);font-size:12px;display:inline-flex;gap:7px;align-items:center}.dot{width:7px;height:7px;border-radius:50%;background:#6c7b91;display:inline-block}.dot.green{background:var(--green);box-shadow:0 0 12px #50dfa088}.dot.red{background:var(--red)}.dot.amber{background:var(--amber)}.hero{padding:28px 0 24px;display:grid;grid-template-columns:1.4fr .6fr;gap:22px;align-items:stretch}.eyebrow{color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}.hero h2{font-size:clamp(30px,5vw,48px);line-height:1.08;letter-spacing:-.04em;margin:12px 0}.hero h2 span{color:var(--cyan)}.hero p{max-width:650px;color:var(--muted);margin:0}.hero-card,.panel,.stat{border:1px solid var(--line);background:linear-gradient(145deg,#131e30ee,#0c1321f2);border-radius:var(--radius);box-shadow:var(--shadow)}.hero-card{padding:21px;display:flex;flex-direction:column;justify-content:space-between;gap:18px}.hero-card h3{margin:0;font-size:15px}.hero-card p{font-size:13px}.health-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.health-label{font-size:12px;color:var(--muted)}.health-value{font-weight:750}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:0 0 22px}.stat{padding:17px 18px}.stat .label{color:var(--muted);font-size:12px}.stat .value{font-size:20px;font-weight:800;margin-top:5px;overflow-wrap:anywhere}.stat .hint{font-size:11px;color:var(--muted);margin-top:3px}.layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:18px;align-items:start;padding-bottom:24px}.stack{display:grid;gap:18px}.panel{padding:22px;min-width:0}.panel-head{display:flex;justify-content:space-between;gap:15px;align-items:flex-start;margin-bottom:19px}.step{color:var(--cyan);font-size:10px;font-weight:850;letter-spacing:.15em}.panel h3{font-size:20px;line-height:1.25;margin:5px 0 7px}.panel-head p{color:var(--muted);font-size:13px;margin:0}.tag{border:1px solid #345466;background:#102631;color:var(--cyan);border-radius:10px;padding:6px 9px;font-size:11px;white-space:nowrap}.notice{background:#171f2d;border:1px solid #334057;border-radius:13px;padding:12px 14px;color:#bac8dc;font-size:12px;margin-bottom:18px}.notice strong{color:var(--text)}.notice.warn{border-color:#65512d;background:#241e13;color:#e6d3aa}.field{margin:15px 0}.field label{display:block;font-size:12px;color:#c5d1e4;font-weight:750;margin-bottom:7px}.field small{display:block;color:var(--muted);font-size:11px;margin-top:6px}.input-wrap{display:flex;gap:8px}.field input,.field select{width:100%;min-width:0;background:#080e19;border:1px solid #2b3a50;border-radius:12px;color:var(--text);padding:12px 13px;min-height:46px}.field input::placeholder{color:#65758d}.field select{appearance:auto}.button-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.btn{border:1px solid #34445d;background:#182235;color:var(--text);padding:10px 14px;border-radius:12px;font-size:12px;font-weight:800;transition:transform .15s,border-color .15s,filter .15s}.btn:hover{border-color:#6a809e;transform:translateY(-1px)}.btn:disabled{opacity:.55;cursor:wait;transform:none}.btn.primary{border:0;color:#07131a;background:linear-gradient(120deg,var(--cyan),#86f3ce)}.btn.danger{color:#ffb4bf;border-color:#603342;background:#291722}.btn.subtle{background:transparent}.message{margin-top:13px;border-radius:12px;padding:10px 12px;font-size:12px;display:none;overflow-wrap:anywhere}.message.show{display:block}.message.success{background:#10291f;border:1px solid #285941;color:#a6f2ca}.message.error{background:#2a1720;border:1px solid #6a3443;color:#ffc0ca}.message.info{background:#132235;border:1px solid #2d4b69;color:#c1dfff}.pair-result{display:none;margin-top:17px;padding:17px;border:1px solid #2b6554;border-radius:15px;background:linear-gradient(135deg,#10271f,#10212b)}.pair-result.show{display:block}.pair-label{color:#a5eecb;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.pair-code{font-size:clamp(25px,6vw,35px);letter-spacing:.12em;font-weight:900;margin:7px 0 10px;color:#fff;overflow-wrap:anywhere}.pair-result p{font-size:12px;color:#b5cbbf;margin:0 0 12px}.pair-actions{display:flex;gap:8px;flex-wrap:wrap}.inline-status{display:flex;align-items:center;gap:9px}.inline-status strong{font-size:13px}.status-detail{font-size:12px;color:var(--muted);margin-top:8px;overflow-wrap:anywhere}.divider{height:1px;background:var(--line);margin:20px 0}.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0}.toggle-row strong{font-size:13px}.toggle-row p{margin:3px 0 0;color:var(--muted);font-size:11px}.mode-select{max-width:170px}.checkline{display:flex;gap:9px;align-items:flex-start;color:var(--muted);font-size:12px;margin:13px 0}.checkline input{accent-color:var(--cyan);margin-top:4px}.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mini{padding:13px;border:1px solid var(--line);border-radius:13px;background:#0b1220}.mini b{display:block;font-size:12px;margin-bottom:5px}.mini span{display:block;color:var(--muted);font-size:11px}.guide-list{display:grid;gap:14px}.guide-item{display:grid;grid-template-columns:32px 1fr;gap:11px}.guide-num{width:30px;height:30px;border-radius:10px;background:#182a3c;color:var(--cyan);display:grid;place-items:center;font-weight:900;font-size:11px}.guide-item strong{font-size:13px}.guide-item p{font-size:12px;color:var(--muted);margin:3px 0 0}.faq details{border-top:1px solid var(--line);padding:13px 0}.faq details:first-child{border-top:0}.faq summary{font-size:12px;font-weight:750;cursor:pointer}.faq p{font-size:12px;color:var(--muted);margin:8px 0 0}.footer{padding:20px 0 35px;text-align:center;color:#687891;font-size:11px}.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#eaf7ff;color:#0a1522;padding:12px 16px;border-radius:13px;box-shadow:var(--shadow);font-size:12px;font-weight:800;transition:.2s;max-width:calc(100% - 24px);z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:850px){.hero{grid-template-columns:1fr}.layout{grid-template-columns:1fr}.hero-card{gap:14px}.stats{gap:9px}.stat{padding:14px}.stat .value{font-size:17px}}@media(max-width:520px){.wrap{width:min(100% - 20px,1160px)}.topbar{align-items:flex-start;padding:17px 0}.brand{gap:9px}.logo{width:41px;height:41px}.brand h1{font-size:16px}.top-actions{justify-content:flex-end}.top-actions .pill:nth-child(2){display:none}.hero{padding-top:15px}.hero h2{font-size:32px}.panel{padding:17px}.panel-head{gap:8px}.stats{grid-template-columns:1fr 1fr}.stat:last-child{grid-column:1/-1}.mini-grid{grid-template-columns:1fr}.button-row .btn{flex:1 1 auto}.pair-code{font-size:27px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="topbar">
+  <div class="brand"><div class="logo" aria-hidden="true">IC</div><div><h1>ICEMAN BOT</h1><p>PRIVATE CONTROL CENTER</p></div></div>
+  <div class="top-actions"><span class="pill"><i class="dot" id="headerDot"></i><span id="headerStatus">Checking service</span></span><span class="pill">BAILEYS · ADMIN</span></div>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="eyebrow">Control · Connect · Configure</div>
+    <h2>Your bot.<br><span>Your control.</span></h2>
+    <p>Manage the WhatsApp session, request a pairing code for an international number, and update the bot’s Gemini settings from one private dashboard.</p>
+  </div>
+  <aside class="hero-card">
+    <div><div class="eyebrow">Service check</div><h3 style="margin-top:8px">Backend availability</h3><p style="margin-top:5px">This check confirms the web server responds. It does not guarantee WhatsApp is connected.</p></div>
+    <div class="health-row"><div><div class="health-label">API health</div><div class="health-value" id="healthValue">Checking…</div></div><button class="btn" id="healthBtn" type="button">Check again</button></div>
+  </aside>
+</section>
+
+<section class="stats" aria-label="Bot overview">
+  <div class="stat"><div class="label">WhatsApp connection</div><div class="value" id="statConnection">Unknown</div><div class="hint">Live backend status</div></div>
+  <div class="stat"><div class="label">Gemini API key</div><div class="value" id="statGemini">Unknown</div><div class="hint">Key value is never displayed</div></div>
+  <div class="stat"><div class="label">Bot access mode</div><div class="value" id="statMode">Unknown</div><div class="hint">Public or private</div></div>
+</section>
+
+<main class="layout">
+  <div class="stack">
+    <section class="panel" id="connection">
+      <div class="panel-head"><div><div class="step">01 / WHATSAPP</div><h3>Connect a WhatsApp account</h3><p>Request a pairing code using a full international phone number.</p></div><span class="tag">Baileys</span></div>
+      <div class="notice warn"><strong>Account switching:</strong> Pairing clears the currently stored WhatsApp session before requesting a new code. Use this only when you intend to replace the connected account.</div>
+      <div class="field"><label for="adminToken">Private admin token</label><div class="input-wrap"><input id="adminToken" type="password" autocomplete="off" placeholder="Enter your ADMIN_TOKEN" aria-describedby="tokenHelp"><button class="btn" type="button" id="toggleToken">Show</button></div><small id="tokenHelp">Sent to the backend as an Authorization Bearer token. This page does not save it in local storage.</small></div>
+      <div class="field"><label for="phone">WhatsApp phone number</label><input id="phone" inputmode="numeric" autocomplete="tel" maxlength="20" placeholder="Example: 233557336883"><small>Enter digits only, including the country calling code. Do not add +, spaces, or a leading local trunk zero. Supported input length: 8–15 digits.</small></div>
+      <label class="checkline"><input type="checkbox" id="confirmSwitch"><span>I understand that generating a code replaces the currently stored WhatsApp session, if one exists.</span></label>
+      <div class="button-row"><button class="btn primary" type="button" id="pairBtn">Generate pairing code ↗</button><button class="btn" type="button" id="statusBtn">Refresh status</button><button class="btn danger" type="button" id="disconnectBtn">Disconnect</button></div>
+      <div id="connectionMessage" class="message" role="status" aria-live="polite"></div>
+      <div class="pair-result" id="pairResult" aria-live="polite"><div class="pair-label">Your pairing code</div><div class="pair-code" id="pairCode">----</div><p>Keep this code private. Enter it in WhatsApp on the phone you control. Do not share it with anyone.</p><div class="pair-actions"><button class="btn primary" type="button" id="copyCodeBtn">Copy code</button><button class="btn" type="button" id="hideCodeBtn">Hide code</button></div></div>
+      <div class="divider"></div>
+      <div class="inline-status"><i class="dot" id="connectionDot"></i><strong id="connectionStatus">Waiting for status</strong></div>
+      <div class="status-detail" id="statusDetail">Enter your admin token and check status to load the private connection details.</div>
+    </section>
+
+    <section class="panel" id="settings">
+      <div class="panel-head"><div><div class="step">02 / AI CONFIGURATION</div><h3>Gemini & bot settings</h3><p>Update settings through the authenticated backend.</p></div><span class="tag">Optional AI</span></div>
+      <div class="notice">For security, the saved API key is never shown. Leave the key field blank to keep the existing key.</div>
+      <div class="field"><label for="geminiModel">Gemini model ID</label><input id="geminiModel" maxlength="100" placeholder="Enter the model ID used by your backend"><small>Use a model ID supported by the backend and your Gemini account.</small></div>
+      <div class="field"><label for="geminiApiKey">Gemini API key</label><input id="geminiApiKey" type="password" autocomplete="new-password" placeholder="Paste a new key only if you want to replace it"><small>The key is sent directly to your backend over the current site connection. Never put it in public HTML or screenshots.</small></div>
+      <div class="field"><label for="mode">Bot access mode</label><select id="mode"><option value="public">Public — basic bot access</option><option value="private">Private — restricted AI access</option></select></div>
+      <label class="checkline"><input type="checkbox" id="clearGeminiKey"><span>Clear the currently saved Gemini key when saving. This overrides any key typed above.</span></label>
+      <div class="button-row"><button class="btn primary" type="button" id="saveSettingsBtn">Save settings</button><button class="btn" type="button" id="reloadSettingsBtn">Reload settings</button></div>
+      <div id="settingsMessage" class="message" role="status" aria-live="polite"></div>
+      <div class="divider"></div>
+      <div class="mini-grid"><div class="mini"><b>API key status</b><span id="keyStatus">Not loaded</span></div><div class="mini"><b>Command prefix</b><span id="prefixStatus">.</span></div></div>
+    </section>
+  </div>
+
+  <div class="stack">
+    <section class="panel">
+      <div class="panel-head"><div><div class="step">03 / SESSION STATUS</div><h3>Connection monitor</h3><p>Refresh to request the latest status from the server.</p></div></div>
+      <div class="mini-grid">
+        <div class="mini"><b>WhatsApp</b><span id="monitorConnection">Unknown</span></div>
+        <div class="mini"><b>Pairing request</b><span id="monitorPairing">Unknown</span></div>
+        <div class="mini"><b>Last reported issue</b><span id="monitorError">None reported</span></div>
+        <div class="mini"><b>Last check</b><span id="lastCheck">Not checked yet</span></div>
+      </div>
+      <div class="button-row"><button class="btn" type="button" id="monitorRefreshBtn">Refresh connection</button></div>
+      <div id="monitorMessage" class="message" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><div class="step">04 / QUICK START</div><h3>Connect in three steps</h3><p>Use this dashboard with your deployed backend.</p></div></div>
+      <div class="guide-list">
+        <div class="guide-item"><div class="guide-num">01</div><div><strong>Enter the private token</strong><p>Use the exact ADMIN_TOKEN configured in your hosting environment. Never send it to anyone or commit it to GitHub.</p></div></div>
+        <div class="guide-item"><div class="guide-num">02</div><div><strong>Enter the full number</strong><p>Include the country calling code. For example, Ghana numbers begin with 233 when entered internationally without the + sign.</p></div></div>
+        <div class="guide-item"><div class="guide-num">03</div><div><strong>Complete linking in WhatsApp</strong><p>Keep the pairing code private and enter it in the WhatsApp app on the phone you control. The code may expire.</p></div></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><div class="step">05 / TROUBLESHOOTING</div><h3>Common checks</h3><p>Use the response message before retrying an action.</p></div></div>
+      <div class="faq">
+        <details><summary>“Unauthorized” or token error</summary><p>Confirm the ADMIN_TOKEN value in your hosting environment and enter it exactly. The dashboard sends it in an Authorization Bearer header. Never paste the token into a public message.</p></details>
+        <details><summary>No pairing code appears</summary><p>Check that the service is awake, the number has 8–15 digits including the country code, and the account is eligible to link. Read sanitized server logs if the API returns a generic server error.</p></details>
+        <details><summary>Pairing another number</summary><p>This backend's pair route intentionally replaces the existing local session. Confirm the account-switch checkbox before requesting a new code. You may need to link the new account again.</p></details>
+        <details><summary>Health is OK but WhatsApp is disconnected</summary><p>The health endpoint confirms only that the HTTP service responds. It does not prove WhatsApp is connected or that messages are being handled.</p></details>
+        <details><summary>Gemini does not reply</summary><p>Check that the saved key is valid, the model ID is supported, the backend can reach the provider, and any provider usage limits have not been reached.</p></details>
+        <details><summary>Is the token stored by this page?</summary><p>No. This page keeps the token in the current page field and does not write it to local storage. Clear the field when you finish, especially on a shared device.</p></details>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><div class="step">06 / SECURITY</div><h3>Keep your account private</h3></div><span class="tag">Important</span></div>
+      <div class="guide-list">
+        <div class="guide-item"><div class="guide-num">✓</div><div><strong>Pair only accounts you control</strong><p>A pairing code can give access to a WhatsApp session. Do not share it or request codes for someone without their permission.</p></div></div>
+        <div class="guide-item"><div class="guide-num">✓</div><div><strong>Protect credentials</strong><p>Keep the admin token, Gemini key, and WhatsApp session files out of public repositories and screenshots.</p></div></div>
+        <div class="guide-item"><div class="guide-num">✓</div><div><strong>Use a secure connection</strong><p>Use the HTTPS URL provided by your hosting service when operating the dashboard online.</p></div></div>
+      </div>
+    </section>
+  </div>
+</main>
+<footer class="footer">ICEMAN BOT · PRIVATE CONTROL CENTER<br>Dashboard controls call the matching backend API; they do not change backend code or hosting settings.</footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  "use strict";
+  const $ = (selector) => document.querySelector(selector);
+  const tokenInput = $("#adminToken");
+  let latestStatus = null;
+  let toastTimer = null;
+
+  function showToast(message) {
+    const el = $("#toast");
+    el.textContent = message;
+    el.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove("show"), 2600);
+  }
+  function setMessage(selector, message, kind = "info") {
+    const el = $(selector);
+    el.textContent = message;
+    el.className = `message show ${kind}`;
+  }
+  function clearMessage(selector) {
+    const el = $(selector);
+    el.textContent = "";
+    el.className = "message";
+  }
+  function setBusy(button, busy, label) {
+    if (!button.dataset.originalLabel) button.dataset.originalLabel = button.textContent;
+    button.disabled = busy;
+    button.textContent = busy ? label : button.dataset.originalLabel;
+  }
+  function cleanNumber(value) {
+    return String(value || "").replace(/\D/g, "");
+  }
+  function getToken() {
+    return tokenInput.value.trim();
+  }
+  async function api(url, options = {}, needsAuth = true) {
+    const headers = new Headers(options.headers || {});
+    if (options.body && !headers.has("Content-Type")) headers.set("Content-Type", "application/json");
+    if (needsAuth) {
+      const token = getToken();
+      if (!token) throw new Error("Enter your private admin token first.");
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+    const response = await fetch(url, { ...options, headers, cache: "no-store" });
+    let data = {};
+    try { data = await response.json(); } catch {}
+    if (!response.ok || data.ok === false) {
+      const message = data.error || `Request failed (HTTP ${response.status}).`;
+      throw new Error(message);
+    }
+    return data;
+  }
+  function normalizedStatus(value) {
+    const text = String(value || "unknown").toLowerCase();
+    return text.replace(/_/g, " ");
+  }
+  function setDot(selector, state) {
+    const dot = $(selector);
+    dot.className = "dot";
+    if (state === "connected" || state === "ok") dot.classList.add("green");
+    else if (state === "connecting") dot.classList.add("amber");
+    else if (state === "disconnected" || state === "error" || state === "failed") dot.classList.add("red");
+  }
+  function renderStatus(data) {
+    latestStatus = data;
+    const wa = data.whatsapp || {};
+    const state = normalizedStatus(wa.status);
+    const pairing = wa.pairingBusy ? "In progress" : "Idle";
+    const issue = wa.lastError ? normalizedStatus(wa.lastError) : "None reported";
+    $("#headerStatus").textContent = state;
+    setDot("#headerDot", String(wa.status || "").toLowerCase());
+    $("#statConnection").textContent = state.replace(/\b\w/g, c => c.toUpperCase());
+    $("#connectionStatus").textContent = `WhatsApp: ${state}`;
+    setDot("#connectionDot", String(wa.status || "").toLowerCase());
+    $("#statusDetail").textContent = wa.lastError ? `Server note: ${issue}. The server provides a shortened error for privacy.` : "Status received from the backend.";
+    $("#monitorConnection").textContent = state;
+    $("#monitorPairing").textContent = pairing;
+    $("#monitorError").textContent = issue;
+    $("#lastCheck").textContent = new Date().toLocaleTimeString();
+    const settings = data.settings || {};
+    if (typeof settings.geminiModel === "string") $("#geminiModel").value = settings.geminiModel;
+    if (settings.mode === "public" || settings.mode === "private") $("#mode").value = settings.mode;
+    $("#statGemini").textContent = settings.hasGeminiKey ? "Configured" : "Not configured";
+    $("#keyStatus").textContent = settings.hasGeminiKey ? "A key is saved" : "No key configured";
+    $("#statMode").textContent = settings.mode ? settings.mode[0].toUpperCase() + settings.mode.slice(1) : "Unknown";
+    $("#prefixStatus").textContent = settings.prefix || ".";
+    $("#statGemini").style.color = settings.hasGeminiKey ? "var(--green)" : "var(--amber)";
+    $("#statMode").style.color = settings.mode === "private" ? "var(--amber)" : "var(--cyan)";
+    $("#clearGeminiKey").checked = false;
+    clearMessage("#monitorMessage");
+  }
+  async function checkHealth() {
+    const button = $("#healthBtn");
+    setBusy(button, true, "Checking…");
+    try {
+      const data = await api("/api/health", {}, false);
+      $("#healthValue").textContent = data.ok ? "Online" : "Unavailable";
+      $("#healthValue").style.color = data.ok ? "var(--green)" : "var(--red)";
+      showToast("Backend health check completed.");
+    } catch (error) {
+      $("#healthValue").textContent = "Unavailable";
+      $("#healthValue").style.color = "var(--red)";
+      setMessage("#monitorMessage", error.message, "error");
+    } finally { setBusy(button, false); }
+  }
+  async function refreshStatus(targetMessage = "#connectionMessage") {
+    const button = targetMessage === "#monitorMessage" ? $("#monitorRefreshBtn") : $("#statusBtn");
+    setBusy(button, true, "Loading…");
+    try {
+      const data = await api("/api/admin/status");
+      renderStatus(data);
+      if (targetMessage !== "#monitorMessage") setMessage(targetMessage, "Status updated successfully.", "success");
+      else setMessage(targetMessage, "Connection status refreshed.", "success");
+    } catch (error) {
+      setMessage(targetMessage, error.message, "error");
+    } finally { setBusy(button, false); }
+  }
+
+  $("#toggleToken").addEventListener("click", () => {
+    const show = tokenInput.type === "password";
+    tokenInput.type = show ? "text" : "password";
+    $("#toggleToken").textContent = show ? "Hide" : "Show";
+  });
+  $("#phone").addEventListener("input", (event) => {
+    const cleaned = cleanNumber(event.target.value);
+    if (event.target.value !== cleaned) event.target.value = cleaned;
+  });
+  $("#healthBtn").addEventListener("click", checkHealth);
+  $("#statusBtn").addEventListener("click", () => refreshStatus());
+  $("#monitorRefreshBtn").addEventListener("click", () => refreshStatus("#monitorMessage"));
+  $("#reloadSettingsBtn").addEventListener("click", () => refreshStatus("#settingsMessage"));
+
+  $("#pairBtn").addEventListener("click", async () => {
+    clearMessage("#connectionMessage");
+    $("#pairResult").classList.remove("show");
+    const phone = cleanNumber($("#phone").value);
+    if (!getToken()) return setMessage("#connectionMessage", "Enter your private admin token first.", "error");
+    if (!/^\d{8,15}$/.test(phone)) return setMessage("#connectionMessage", "Enter a valid international number with country calling code, using 8–15 digits only.", "error");
+    if (!$("#confirmSwitch").checked) return setMessage("#connectionMessage", "Confirm that you understand this replaces the stored WhatsApp session before continuing.", "error");
+    if (!confirm(`Request a pairing code for ${phone}? This replaces the currently stored session. Continue only for a WhatsApp account you control.`)) return;
+    const button = $("#pairBtn");
+    setBusy(button, true, "Requesting code…");
+    try {
+      const data = await api("/api/admin/pair", { method: "POST", body: JSON.stringify({ phoneNumber: phone }) });
+      if (data.pairingCode) {
+        $("#pairCode").textContent = data.pairingCode;
+        $("#pairResult").classList.add("show");
+        setMessage("#connectionMessage", "Pairing code received. Keep it private and enter it in WhatsApp on the phone you control.", "success");
+      } else {
+        setMessage("#connectionMessage", "The server accepted the request but did not return a pairing code. Refresh status and check the server logs if needed.", "info");
+      }
+      if (data.whatsapp) renderStatus({ whatsapp: data.whatsapp, settings: latestStatus?.settings || {} });
+    } catch (error) {
+      setMessage("#connectionMessage", error.message, "error");
+    } finally { setBusy(button, false); }
+  });
+
+  $("#copyCodeBtn").addEventListener("click", async () => {
+    const code = $("#pairCode").textContent.trim();
+    try {
+      await navigator.clipboard.writeText(code);
+      showToast("Pairing code copied. Keep it private.");
+    } catch {
+      const range = document.createRange();
+      range.selectNodeContents($("#pairCode"));
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      showToast("Select and copy the pairing code manually.");
+    }
+  });
+  $("#hideCodeBtn").addEventListener("click", () => {
+    $("#pairCode").textContent = "••••-••••";
+    $("#pairResult").classList.remove("show");
+  });
+
+  $("#disconnectBtn").addEventListener("click", async () => {
+    clearMessage("#connectionMessage");
+    if (!getToken()) return setMessage("#connectionMessage", "Enter your private admin token first.", "error");
+    if (!confirm("Disconnect the current WhatsApp session? You may need to pair again to reconnect.")) return;
+    const button = $("#disconnectBtn");
+    setBusy(button, true, "Disconnecting…");
+    try {
+      const data = await api("/api/admin/disconnect", { method: "POST", body: "{}" });
+      if (data.whatsapp) renderStatus({ whatsapp: data.whatsapp, settings: latestStatus?.settings || {} });
+      setMessage("#connectionMessage", "Disconnect request completed.", "success");
+    } catch (error) {
+      setMessage("#connectionMessage", error.message, "error");
+    } finally { setBusy(button, false); }
+  });
+
+  $("#saveSettingsBtn").addEventListener("click", async () => {
+    clearMessage("#settingsMessage");
+    if (!getToken()) return setMessage("#settingsMessage", "Enter your private admin token first.", "error");
+    const model = $("#geminiModel").value.trim();
+    const key = $("#geminiApiKey").value.trim();
+    const clearKey = $("#clearGeminiKey").checked;
+    const mode = $("#mode").value;
+    if (clearKey && key) {
+      if (!confirm("Clear the saved Gemini key? The clear option will override the newly typed key.")) return;
+    } else if (!confirm("Save the bot settings to the backend?")) return;
+    const body = { geminiModel: model, mode };
+    if (clearKey) body.clearGeminiKey = true;
+    else if (key) body.geminiApiKey = key;
+    const button = $("#saveSettingsBtn");
+    setBusy(button, true, "Saving…");
+    try {
+      const data = await api("/api/admin/settings", { method: "POST", body: JSON.stringify(body) });
+      const settings = data.settings || {};
+      $("#geminiApiKey").value = "";
+      $("#clearGeminiKey").checked = false;
+      if (typeof settings.geminiModel === "string") $("#geminiModel").value = settings.geminiModel;
+      if (settings.mode) $("#mode").value = settings.mode;
+      $("#statGemini").textContent = settings.hasGeminiKey ? "Configured" : "Not configured";
+      $("#keyStatus").textContent = settings.hasGeminiKey ? "A key is saved" : "No key configured";
+      $("#statMode").textContent = settings.mode ? settings.mode[0].toUpperCase() + settings.mode.slice(1) : "Unknown";
+      $("#prefixStatus").textContent = settings.prefix || ".";
+      setMessage("#settingsMessage", "Settings saved successfully. The API key field has been cleared.", "success");
+    } catch (error) {
+      setMessage("#settingsMessage", error.message, "error");
+    } finally { setBusy(button, false); }
+  });
+
+  tokenInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") refreshStatus();
+  });
+  checkHealth();
+})();
+</script>
+</body>
+</html>
